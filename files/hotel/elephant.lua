@@ -189,7 +189,7 @@ local All = Tab:CreateButton({
             game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
        end
     end
-    for _,v in pairs(game:GetService("ScreenGui"):GetDescendants()) do
+    for _,v in pairs(game:GetService("StarterGui"):GetDescendants()) do
        if v:IsA("ScreenGui") then
             game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
        end
