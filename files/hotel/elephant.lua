@@ -246,15 +246,17 @@ local All = Tab:CreateButton({
 local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Scripts")
 local All = Tab:CreateButton({
-   Name = "Infinite Yield",
+   Name = "Infinite Yield (EdgeIY)",
    Callback = function()
    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
    end,
 })
 local All = Tab:CreateButton({
-   Name = "Super Fling",
+   Name = "Touch Fling (Shattered Gang)",
    Callback = function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
+   -- -> discord.gg/G4nhhKFyyw <-
+    _G.KeyCode = "X"
+    loadstring(game:HttpGet("https://shattered-gang.lol/scripts/fe/touch_fling.lua"))()
    end,
 })
 
