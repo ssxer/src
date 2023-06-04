@@ -107,8 +107,8 @@ local All = Tab:CreateButton({
 
 local Slider = Tab:CreateSlider({
    Name = "Amount o' Money! to fuck!",
-   Range = {-1000, -1},
-   Increment = 10,
+   Range = {-1, -1000000},
+   Increment = 100,
    Suffix = "Amount o' money to fuck!",
    CurrentValue = 500,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -126,6 +126,57 @@ local All = Tab:CreateButton({
        if v:IsA("BasePart") then
            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
        end
+    end
+    for _,v in pairs(game:GetDescendants()) do
+        if v:IsA("Script") then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        end
+        if v:IsA("LocalScript") then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        end
+    end
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Delete CASH!11",
+   Callback = function()
+   for _,v in pairs(game:GetService("Players"):GetDescendants()) do
+       if v.Name == "leaderstats" then
+           game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+       end
+    end
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Delete ALL SCRIPTS!111",
+   Callback = function()
+       for _,v in pairs(game:GetDescendants()) do
+        if v:IsA("Script") then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        end
+        if v:IsA("LocalScript") then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        end
+        if v:IsA("ModuleScript") then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        end
+    end
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Delete almost all Remotes!11!!",
+   Callback = function()
+       for _,v in pairs(game:GetDescendants()) do
+        if v:IsA("RemoteEvent") then
+            if v.Name == "GuiHandler" or v.Name == "MoneyRequest" then
+                print("Now this is vital remotes for the script to work: Game."..v:GetFullName())
+            else
+                game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+            end
+        end
     end
    end,
 })
@@ -179,20 +230,19 @@ local All = Tab:CreateButton({
    end,
 })
 
-local Section = Tab:CreateSection("GUI Stuff")
+local Section = Tab:CreateSection("GUI Options")
 
 local All = Tab:CreateButton({
    Name = "Delete all GUIs",
    Callback = function()
-   for _,v in pairs(game:GetService("Players"):GetDescendants()) do
-       if v:IsA("ScreenGui") then
-            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
-       end
-    end
-    for _,v in pairs(game:GetService("StarterGui"):GetDescendants()) do
+   for _,v in pairs(game:GetDescendants()) do
        if v:IsA("ScreenGui") then
             game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
        end
     end
    end,
 })
+
+
+
+
