@@ -1,5 +1,11 @@
 -- src/bin/hotels/elephant (Hotel Elephant)
 
+game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = "Loading..";
+        Text = "You are loading Elephant X! Due to the current GUI library we use, it might be difficult to load in.";
+         Duration = 5;
+})
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local locked = false
