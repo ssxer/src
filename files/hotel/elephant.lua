@@ -243,6 +243,20 @@ local All = Tab:CreateButton({
    end,
 })
 
+local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Scripts")
+local All = Tab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+local All = Tab:CreateButton({
+   Name = "Super Fling",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
+   end,
+})
 
 
 
