@@ -232,6 +232,13 @@ local All = Tab:CreateButton({
     end
    end,
 })
+local All = Tab:CreateButton({
+   Name = "Kick a Random Player",
+   Callback = function()
+   local ama = game:GetService("Players"):GetPlayers()
+   game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, ama[math.random(#ama)])
+   end,
+})
 
 local Section = Tab:CreateSection("Lock Options")
 
