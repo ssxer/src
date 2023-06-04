@@ -220,6 +220,19 @@ local All = Tab:CreateButton({
    end,
 })
 
+local All = Tab:CreateButton({
+   Name = "Kick Other Players",
+   Callback = function()
+   for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+       if v.Name == game:GetService("Players").LocalPlayer.Name then
+                                        
+       else
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+       end
+    end
+   end,
+})
+
 local Section = Tab:CreateSection("Lock Options")
 
 local All = Tab:CreateButton({
@@ -260,6 +273,11 @@ local All = Tab:CreateButton({
 local All = Tab:CreateButton({
    Name = "Touch Fling (Shattered Gang)",
    Callback = function()
+     game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = "Loading..";
+        Text = "You are loading Touch Fling! Now normally, i dont tell you that scripts are loading. But i need to tell you that the keycode to enable touch fling is the X key.";
+         Duration = 5;
+})
    -- -> discord.gg/G4nhhKFyyw <-
     _G.KeyCode = "X"
     loadstring(game:HttpGet("https://shattered-gang.lol/scripts/fe/touch_fling.lua"))()
