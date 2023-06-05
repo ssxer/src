@@ -1,16 +1,33 @@
 -- src/bin/hotels/elephant (Hotel Elephant)
 
+local snd2 = Instance.new("Sound")
+snd2.SoundId = "rbxassetid://5772117110"
+snd2.Parent = workspace
+snd2:Play()
+
+task.wait(3.792)
+
 local blacklists = {}
 
 game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
 
 game.StarterGui:SetCore("SendNotification",{ -- reassurance
-        Title = "Loading..";
+        Title = "Welcome!";
         Text = "You are loading Elephant X! Due to the current GUI library we use, it might be difficult to load in.";
          Duration = 5;
 })
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))() -- rayfield menu, basically the entire gui lmao, you should use it
+
+spawn(function()
+    local snd = Instance.new("Sound")
+    snd.SoundId = "rbxassetid://5772118047"
+    snd.Parent = workspace
+    while true do
+        snd:Play()
+        task.wait(4.806)
+    end
+end)
 
 local locked = false
 
@@ -145,11 +162,9 @@ local Section = Tab:CreateSection("Very Abusive Options")
 local All = Tab:CreateButton({
    Name = "Delete the WHOLE MAP!",
    Callback = function()
-   for _,v in pairs(game:GetDescendants()) do
-       if v:IsA("Player") then
-           
-       else
-        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+   for _,v in pairs(workspace:GetDescendants()) do
+       if v:IsA("BasePart") then
+           game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
        end
     end
    end,
@@ -316,6 +331,33 @@ local All = Tab:CreateButton({
     end
    end,
 })
+
+local All = Tab:CreateButton({
+   Name = "Delete the Roblox Menu GUI! (Experimental)",
+   Callback = function()
+   game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, game.CoreGui.RobloxGui)
+   end,
+})
+
+local Section = Tab:CreateSection("Customization Options")
+
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "GUI Color (Ingame)",
+    Color = Color3.fromRGB(255,255,255),
+    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        for _,v in pairs(game:GetDescendants()) do
+            if v:IsA("TextLabel") then
+                v.TextColor3 = Value
+            end
+            if v:IsA("Frame") then
+                v.BackgroundColor3 = Value
+            end
+        end
+    end
+})
+
+
 
 local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Scripts")
