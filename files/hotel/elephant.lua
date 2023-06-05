@@ -226,7 +226,7 @@ if _G.MoreFeatures == true then
 local All = Tab:CreateButton({
    Name = "Delete the ROOMS!",
    Callback = function()
-   for _,v in pairs(game:GetDescendants() do
+   for _,v in pairs(game:GetDescendants()) do
        if v.Name == "Room Key" then
            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
         elseif v.Name == "Rooms" then
