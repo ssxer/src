@@ -468,6 +468,8 @@ local All = Tab:CreateButton({
    end,
 })
 
+local valimg
+
 local All = Tab:CreateButton({
    Name = "Random parts go bye bye (THAT IS LITERALLY THE REAL NAME) (RE Scripts)",
    Callback = function()
@@ -479,7 +481,7 @@ local All = Tab:CreateButton({
     spawn(function()
 	
     while true do
-        task.wait(0.01)
+        task.wait(valimg)
 	    game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
@@ -495,6 +497,18 @@ local All = Tab:CreateButton({
     end
 	
     end)
+   end,
+})
+
+local Slider = Tab:CreateSlider({
+   Name = "Amount of Speed",
+   Range = {0.001, 5},
+   Increment = 0.05,
+   Suffix = "Amount o' Speed",
+   CurrentValue = 0.01,
+   Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   valimg = Value
    end,
 })
 
