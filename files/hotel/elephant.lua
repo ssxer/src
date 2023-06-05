@@ -2,6 +2,8 @@
 
 -- Preperation
 
+
+
 local player = game.Players.LocalPlayer -- Preparius
 local mouse = player:GetMouse()
 local CollectionService = game:GetService("CollectionService")
@@ -188,7 +190,7 @@ local All = Tab:CreateButton({
 
 local Slider = Tab:CreateSlider({
    Name = "Amount o' Money! to fuck!",
-   Range = {-1, -1000000},
+   Range = {-1, -1000000000000},
    Increment = 100,
    Suffix = "Amount o' money to fuck!",
    CurrentValue = 500,
@@ -219,6 +221,21 @@ local All = Tab:CreateButton({
     end
    end,
 })
+
+if _G.MoreFeatures == true then
+local All = Tab:CreateButton({
+   Name = "Delete the ROOMS!",
+   Callback = function()
+   for _,v in pairs(game:GetDescendants() do
+       if v.Name == "Room Key" then
+           game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        elseif v.Name == "Rooms" then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+        end
+    end
+   end,
+})
+end
 
 local All = Tab:CreateButton({
    Name = "Delete CASH!11",
@@ -424,7 +441,6 @@ local ColorPicker = Tab:CreateColorPicker({
         end
     end
 })
-
 
 
 local Tab = Window:CreateTab("Other Exploiting", 4483362458) -- Title, Image
