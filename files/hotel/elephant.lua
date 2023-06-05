@@ -12,7 +12,7 @@ snd2.SoundId = "rbxassetid://5772117110"
 snd2.Parent = workspace
 snd2:Play()
 
--- Dependencies [DO NOT REMOVE]
+-- Useful [DO NOT REMOVE]
 --[[#1]] loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Anti-Kick/main/Anti%20Kick.lua",true))()
 --[[#2]] loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
 
@@ -537,5 +537,25 @@ local All = Tab:CreateButton({
          Duration = 5;
 })
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Touch Kick (ISSEY SCRIPTS)",
+   Callback = function()
+     game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = "BY ISSEI SCRIPTS";
+        Text = ":)";
+         Duration = 5;
+})
+    spawn(game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Touched:Connect(function(hit)
+    if hit.Parent:FindFirstChild("Humanoid") then
+	    local plr = game:GetService("Players"):GetPlayerFromCharacter(hit.Parent)
+       game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, plr)
+   elseif hit.Parent.Parent:FindFirstChild("Humanoid") then
+       local plr = game:GetService("Players"):GetPlayerFromCharacter(hit.Parent.Parent)
+       game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, plr)
+   end
+    end))
    end,
 })
