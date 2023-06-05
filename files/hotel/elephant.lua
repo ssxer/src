@@ -541,10 +541,10 @@ local All = Tab:CreateButton({
 })
 
 local All = Tab:CreateButton({
-   Name = "Touch Kick (ISSEY SCRIPTS)",
+   Name = "Touch Kick (probablyagoodperson3)",
    Callback = function()
      game.StarterGui:SetCore("SendNotification",{ -- reassurance
-        Title = "BY ISSEI SCRIPTS";
+        Title = "BY probablyagoodperson3 (Skidded by Photoshop)";
         Text = ":)";
          Duration = 5;
 })
