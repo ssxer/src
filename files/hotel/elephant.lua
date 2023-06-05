@@ -1,4 +1,7 @@
 -- src/bin/hotels/elephant (Hotel Elephant)
+
+-- Preperation
+
 local player = game.Players.LocalPlayer -- Preparius
 local mouse = player:GetMouse()
 local CollectionService = game:GetService("CollectionService")
@@ -7,6 +10,9 @@ snd2.SoundId = "rbxassetid://5772117110"
 snd2.Parent = workspace
 snd2:Play()
 
+-- Dependencies [DO NOT REMOVE]
+--[[#1]] loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Anti-Kick/main/Anti%20Kick.lua",true))()
+--[[#2]] loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
 
 local blacklists = {chipcre8}
 
