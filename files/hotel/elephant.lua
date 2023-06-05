@@ -143,20 +143,23 @@ local Slider = Tab:CreateSlider({
 local Section = Tab:CreateSection("Very Abusive Options")
 
 local All = Tab:CreateButton({
-   Name = "Fuck the WHOLE GAME!",
+   Name = "Delete the WHOLE MAP!",
    Callback = function()
-   for _,v in pairs(workspace:GetDescendants()) do
-       if v:IsA("BasePart") then
-           game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+   for _,v in pairs(game:GetDescendants()) do
+       if v:IsA("Player") then
+           
+       else
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
        end
     end
-    for _,v in pairs(game:GetDescendants()) do
-        if v:IsA("Script") then
-            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
-        end
-        if v:IsA("LocalScript") then
-            game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
-        end
+   end,
+})
+
+local All = Tab:CreateButton({
+   Name = "Delete the TEAMS!",
+   Callback = function()
+   for _,v in pairs(game.Teams:GetDescendants()) do
+     game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
     end
    end,
 })
