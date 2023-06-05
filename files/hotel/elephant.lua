@@ -1,12 +1,16 @@
 -- src/bin/hotels/elephant (Hotel Elephant)
 
+local blacklists = {}
+
+game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
+
 game.StarterGui:SetCore("SendNotification",{ -- reassurance
         Title = "Loading..";
         Text = "You are loading Elephant X! Due to the current GUI library we use, it might be difficult to load in.";
          Duration = 5;
 })
 
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))() -- rayfield menu, basically the entire gui lmao, you should use it
 
 local locked = false
 
@@ -14,8 +18,23 @@ local currval
 
 game:GetService("Players").PlayerAdded:Connect(function(plr)
     if locked == true then
+        game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = plr.Name.." tried to join.";
+        Text = "Server is currently locked.";
+         Duration = 5;
+    })
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, plr)
     end
+    if table.find(blacklists, plr.Name) then
+        if locked == true then
+        game.StarterGui:SetCore("SendNotification",{ -- reassurance
+        Title = plr.Name.." tried to join.";
+        Text = "That player is banned.";
+         Duration = 5;
+        })
+        game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, plr)
+    end
+end
 end)
 
 Rayfield:Notify({
@@ -187,7 +206,7 @@ local All = Tab:CreateButton({
    end,
 })
 
-local Section = Tab:CreateSection("Kick Options")
+local Section = Tab:CreateSection("Individual Kick & Ban Options")
 
 local plre
 
@@ -202,6 +221,18 @@ local All = Tab:CreateButton({
    end,
 })
 
+local All = Tab:CreateButton({
+   Name = "Ban Player",
+   Callback = function()
+   for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+       if v.Name == plre then
+           table.insert(blacklists, v.Name)
+           game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, v)
+       end
+    end
+   end,
+})
+
 local Input = Tab:CreateInput({
    Name = "Player to Kick",
    PlaceholderText = "Player",
@@ -210,6 +241,8 @@ local Input = Tab:CreateInput({
     plre = Text
    end,
 })
+
+local Section = Tab:CreateSection("Multiple Kick & Ban Options")
 
 local All = Tab:CreateButton({
    Name = "Kick All Players",
@@ -291,5 +324,15 @@ local All = Tab:CreateButton({
    end,
 })
 
-
-
+local All = Tab:CreateButton({
+   Name = "Get Bans",
+   Callback = function()
+   for _,v in pairs(blacklists) do
+        game.StarterGui:SetCore("SendNotification",{ --waaw
+            Title = "Banned Player";
+             Text = v;
+            Duration = 5;
+     })
+    end
+   end,
+})
