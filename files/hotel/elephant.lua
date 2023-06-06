@@ -12,9 +12,7 @@ snd2.SoundId = "rbxassetid://5772117110"
 snd2.Parent = workspace
 snd2:Play()
 
--- Useful [DO NOT REMOVE]
---[[#1]] loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Anti-Kick/main/Anti%20Kick.lua",true))()
---[[#2]] loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
+--[[#1]] loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
 
 local blacklists = {chipcre8}
 
