@@ -524,7 +524,7 @@ game.StarterGui:SetCore("SendNotification",{
     Duration = 5;
 })
 
-spawn(repeat
+    repeat
     task.wait(0.01)
 	    game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
@@ -545,7 +545,7 @@ game.StarterGui:SetCore("SendNotification",{
     Title = "done";
     Text = "look at your game now xD";
     Duration = 5;
-}))
+})
 
    end,
 })
