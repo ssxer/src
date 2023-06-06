@@ -335,13 +335,9 @@ local All = Tab:CreateButton({
 })
 
 local All = Tab:CreateButton({
-   Name = "Ban Player!",
+   Name = "Unban Player!",
    Callback = function()
-   for _,v in pairs(game:GetService("Players"):GetPlayers()) do
-       if v.Name == plre then
-           table.remove(blacklists, plre)
-       end
-    end
+    table.remove(blacklists, table.find(blacklists, plre))
    end,
 })
 
@@ -525,7 +521,7 @@ game.StarterGui:SetCore("SendNotification",{
 })
 
     repeat
-    task.wait(0.01)
+    task.wait(valimg)
 	    game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
