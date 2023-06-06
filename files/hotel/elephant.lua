@@ -1,8 +1,22 @@
--- src/bin/hotels/elephant (Hotel Elephant)
-
--- Preperation
-
-
+--[[
+----------------------------------------------------------------------- |
+lIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIl |
+oOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo |
+        .__                   .__                       __              |
+  ____  |  |    ____  ______  |  |__  _____     ____  _/  |_  ___  ___  |
+_/ __ \ |  |  _/ __ \ \____ \ |  |  \ \__  \   /    \ \   __\ \  \/  /  |
+\  ___/ |  |__\  ___/ |  |_> >|   Y  \ / __ \_|   |  \ |  |    >    <   |
+ \___  >|____/ \___  >|   __/ |___|  /(____  /|___|  / |__|   /__/\_ \  |
+     \/            \/ |__|         \/      \/      \/               \/  |
+                                                                        |
+                 by ssxer | contributors: photoshopsoup                 |
+                 prelaunch arguments:                                   |
+                 [1] _G.playerblacklists = {}                           |
+                 [2] _g.morefeatures = true                             |
+oOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo |
+lIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIlIl |
+----------------------------------------------------------------------- |
+--]]
 
 local player = game.Players.LocalPlayer -- Preparius
 local mouse = player:GetMouse()
@@ -12,9 +26,15 @@ snd2.SoundId = "rbxassetid://5772117110"
 snd2.Parent = workspace
 snd2:Play()
 
+
+
 --[[#1]] loadstring(game:HttpGet("https://raw.githubusercontent.com/ssxer/src/main/files/hotel/temp.lua",true))()
 
-local blacklists = {chipcre8}
+local blacklists = {"chipcre8"}
+
+if _G.playerblacklists then
+    blacklists = _G.playerblacklists
+end
 
 for _,pl in pairs(game:GetService("Players"):GetPlayers()) do
     for _,ba in pairs(blacklists) do
@@ -314,6 +334,16 @@ local All = Tab:CreateButton({
    end,
 })
 
+local All = Tab:CreateButton({
+   Name = "Ban Player!",
+   Callback = function()
+   for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+       if v.Name == plre then
+           table.remove(blacklists, plre)
+       end
+    end
+   end,
+})
 
 local All = Tab:CreateButton({
    Name = "Get Bans!",
@@ -487,15 +517,15 @@ local valimg
 local All = Tab:CreateButton({
    Name = "Random parts go bye bye (THAT IS LITERALLY THE REAL NAME) (RE Scripts)",
    Callback = function()
-        game.StarterGui:SetCore("SendNotification",{ -- reassurance
-        Title = "loaded lmao";
-        Text = "rip your game mother fucker";
-         Duration = 5;
+   
+game.StarterGui:SetCore("SendNotification",{
+    Title = "loaded lmao";
+    Text = "rip your game mother fucker";
+    Duration = 5;
 })
-    spawn(function()
-	
-    while true do
-        task.wait(valimg)
+
+spawn(repeat
+    task.wait(0.01)
 	    game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
@@ -508,9 +538,15 @@ local All = Tab:CreateButton({
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
         game:GetService("ReplicatedStorage").GuiHandler:FireServer(false, workspace:GetDescendants()[math.random(#workspace:GetDescendants())])
-    end
-	
-    end)
+until #game.Workspace:GetDescendants() == 2
+
+
+game.StarterGui:SetCore("SendNotification",{
+    Title = "done";
+    Text = "look at your game now xD";
+    Duration = 5;
+}))
+
    end,
 })
 
